@@ -1,0 +1,28 @@
+import string
+import re
+input_text = '  \t #sample <HTML> <H1> #Greetings our college offering Computer science courses in {B.Tech} with 3 sPecializations & [M.TEch] with 1 specializations #ComputerScience->totalcourses:?  https://www.aec.edu.in is our coLLege website !!!   </H1> ....  \t  '
+input_text = input_text.lower()
+print(input_text)
+input_text = re.sub(r'\d+', '', input_text)
+print(input_text)
+input_text = input_text.strip()
+print(input_text)
+html_pattern = re.compile('<.*?>')
+input_text=html_pattern.sub(r'', input_text)
+print(input_text)
+url_pattern = re.compile(r'https?://\S+ | www\.\S+')
+input_text=url_pattern.sub(r'', input_text)
+print(input_text)
+hash_pattern = re.compile(r'#[a-z]+')
+input_text=hash_pattern.sub(r' ', input_text)
+print(input_text)
+for punc in string.punctuation:
+        if punc in input_text:
+            input_text = input_text.replace(punc, '')
+print(input_text)
+x = re.findall("is our \S+ \S+",input_text)
+input_text = re.sub("is our \S+ \S+","",input_text)
+print(input_text)
+tweet = """if you hold an empty # gatorade # bottle up to your ear @@ you can hear the sports 100 %%"""
+x = re.sub('[^a-zA-Z0-9 ]+','',tweet)
+print(x)
