@@ -1,0 +1,19 @@
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+import pandas as pd
+count_vect = CountVectorizer()
+Document1= "Aditya Engineering College situated at Surampalem"
+Document2= "Engineering Colleges offer computer science courses in MCA AIML CSE IT departments"
+Document3= "Computer science students have opprtunities in IT sector"
+Document4= "IT sector hire students with skills in computer science"
+corpus = [Document1,Document2,Document3,Document4]
+X_train_counts = count_vect.fit_transform(corpus)
+df1=pd.DataFrame(X_train_counts.toarray(),columns=count_vect.get_feature_names_out(),index=['Document 0','Document 1','Document2','Document3'])
+vectorizer = TfidfVectorizer()
+trsfm=vectorizer.fit_transform(corpus)
+df2=pd.DataFrame(trsfm.toarray(),columns=vectorizer.get_feature_names_out(),index=['Document 0','Document 1','Document 2','Document 3'])
+print(df1)
+print(df2)
+cosine_similarity(trsfm[0:3], trsfm)
