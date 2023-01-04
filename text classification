@@ -1,0 +1,30 @@
+!pip install textblob
+import nltk
+nltk.download('punkt')
+
+train = [
+     ('What an amazing weather.', 'pos'),
+     ('this is an amazing idea!', 'pos'),
+     ('I feel very good about these ideas.', 'pos'),
+     ('this is my best performance.', 'pos'),
+     ("what an awesome view", 'pos'),
+     ('I do not like this place', 'neg'),
+     ('I am tired of this stuff.', 'neg'),
+     ("I can't deal with all this tension", 'neg'),
+     ('he is my sworn enemy!', 'neg'),
+     ('my friends is horrible.', 'neg')
+ ]
+test = [
+     ('the food was great.', 'pos'),
+     ('I do not want to live anymore', 'neg'),
+     ("I ain't feeling dandy today.", 'neg'),
+     ("I feel amazing!", 'pos'),
+     ('Ramesh is a friend of mine.', 'pos'),
+     ("I can't believe I'm doing this.", 'neg')
+ ]
+from textblob.classifiers import NaiveBayesClassifier
+cl = NaiveBayesClassifier(train)
+print(cl.classify("This is an amazing library!"))
+
+print(cl.accuracy(test))
+cl.show_informative_features(4)
