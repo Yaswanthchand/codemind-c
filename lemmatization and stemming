@@ -1,0 +1,21 @@
+from nltk.stem import PorterStemmer
+from nltk.stem import SnowballStemmer 
+from nltk.tokenize import RegexpTokenizer
+
+import nltk
+tokenizer = RegexpTokenizer(r'\w+')
+words = ["Walking","Swimming","Computer","Computing","Language","Natual","Education","easy", "irrational", "relation"]
+
+stemmer_ps = PorterStemmer()  
+stemmed_words_ps = [stemmer_ps.stem(word) for word in words]
+print("Porter stemmed words: ", stemmed_words_ps)
+stemmer_ss = SnowballStemmer("english")   
+
+stemmed_words_ss = [stemmer_ss.stem(word) for word in words]
+print("Snowball stemmed words: ", stemmed_words_ss)
+sentence="I was wonder when I walk in Indian roads because everybody using computers to understand the language so they forgot their mother language it is natural because people are edicted to computer it is irritating me"
+token_words=tokenizer.tokenize(sentence) 
+stem_sentence=[]
+for word in token_words:
+        stem_sentence.append(stemmer_ps.stem(word))
+print("The Porter stemmed sentence is: ", stem_sentence)
